@@ -2,6 +2,7 @@ import re
 from patterns import get_patterns
 from handlers import handle_farewell, handle_unknown
 from logger import save_to_file
+from database import init_db, save_user
 
 def process_message(message):
     message = message.strip().lower()
@@ -15,7 +16,15 @@ def process_message(message):
     return handle_unknown()
 
 def main():
+
+    init_db()
+    
     print("Бот запущен! Для выхода напишите 'пока/выход'")
+    print("Как вас зовут?")
+    
+    user_name = input("Вы: ").strip()
+    save_user(user_name)
+    print(f"Бот: Приятно познакомиться, {user_name}!")
     
     while True:
         user_input = input("Вы: ")

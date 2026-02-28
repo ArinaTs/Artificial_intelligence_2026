@@ -2,7 +2,7 @@ import re
 from handlers import (
     handle_greeting, handle_farewell, handle_time,
     handle_date, handle_year, handle_how_are_you,
-    handle_calculation
+    handle_calculation, handle_weather
 )
 
 # Словарь с паттернами и соответствующими обработчиками
@@ -14,6 +14,7 @@ patterns = [
     (re.compile(r"(какой год|который год)", re.IGNORECASE), handle_year),
     (re.compile(r"(как дела|как ты)", re.IGNORECASE), handle_how_are_you),
     (re.compile(r"(\d+\s*\+\s*\d+)"), handle_calculation),
+    (re.compile(r"погода в ([а-яА-Яa-zA-Z\s-]+)", re.IGNORECASE), handle_weather),
 ]
 
 def get_patterns():

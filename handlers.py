@@ -1,4 +1,5 @@
 from datetime import datetime
+from weather import get_weather
 
 def handle_greeting(match=None):
     return "Здравствуйте! Чем могу помочь?"
@@ -43,3 +44,7 @@ def handle_calculation(match):
     
     except (ValueError, IndexError):
         return "Ошибка! Нужно ввести числа через + (например: 5+3)"
+    
+def handle_weather(match):
+    city = match.group(1)
+    return get_weather(city)
